@@ -1,28 +1,122 @@
 <html>
 <head>
 <title>Time Saving Link Appender </title>
+ 
+<link rel="stylesheet" href="chosen.min.css">
 
-<script src="jquery.js"></script>
+
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.js"></script>
+<script src="chosen.min.js"></script>
 <script src="chosen.jquery.js"></script>
+ 
 
+
+<!-- single dropdown -->
+
+<select id="show-form" data-placeholder="Choose Your Desk/Show" class="show-chosen" style="width:200px;">
+    <option value = "Show/Desk/Blog">Show/Desk/Blog</option>
+    <option value = "">13.7</option> 
+    <option value = "A Blog Supreme">A Blog Supreme</option>
+    <option value = "All Songs Considered">All Songs Considered</option>
+    <option value = "All Tech Considered">All Tech Considered</option>
+    <option value = "All Things Considered">All Things Considered</option>
+    <option value = "Alt. Latino">Alt. Latino</option>
+    <option value = "Ask Me Another">Ask Me Another</option>
+    <option value = "Code Switch">Code Switch</option>
+    <option value = "Deceptive Cadence">Deceptive Cadence</option>
+    <option value = "Generation Listen">Generation Listen</option>
+    <option value = "Global Health">Global Health</option>
+    <option value = "It's All Politics">It's All Politics</option>
+    <option value = "Monkee See">Monkey See</option>
+    <option value = "Morning Edition">Morning Edition</option>
+    <option value = "NPR Archives">NPR Archives</option>
+    <option value = "NPR Books">NPR Books</option>
+	<option value = "NPR Jobs">NPR Jobs</option>
+	<option value = "NPR Library">NPR Library</option>
+    <option value = "NPR Movies">NPR Movies</option>
+    <option value = "NPR Music">NPR Music</option>
+    <option value = "NPR News">NPR News</option>
+    <option value = "NPR Presents">NPR Presents</option>
+    <option value = "NPR Shop">NPR Shop</option>
+    <option value = "NPR Viz">NPR Viz</option>
+    <option value = "Olympics">Olympics</option>
+    <option value = "Ombudsman">Ombudsman</option>
+    <option value = "On The Road">On The Road</option>
+    <option value = "Parallels">Parallels</option>
+    <option value = "The Picture Show">The Picture Show</option>
+    <option value = "Planet Money">Planet Money</option>
+    <option value = "Science Desk">Science Desk</option>
+    <option value = "Shots">Shots</option>
+    <option value = "Skunk Bear">Skunk Bear</option>
+    <option value = "TED Radio">TED Radio Hour</option>
+    <option value = "Tell Me More">Tell Me More</option>
+    <option value = "The Two-Way">The Two-Way</option>
+    <option value = "This Is NPR">This is NPR</option>
+    <option value = "Wait Wait...Don't Tell Me">Wait Wait...Don't Tell Me</option>
+    <option value = "Weekend Edition">Weekend Edition</option>
+    
+</select>
+
+ 
+<select id="network-form" data-placeholder="Social Media Site" class="social-chosen" style="width:200px;">
+    <option>Social Network</option>
+    <option value = "Facebook">Facebook</option>
+    <option value = "Twitter">Twitter</option>
+    <option value = "Tumblr">Tumblr</option>
+    <option value = "Google Plus">Google Plus</option>
+    <option value = "LinkedIn">LinkedIn</option>
+    <option value = "Pinterest">Pinterest</option>
+    <option value = "Reddit">Reddit</option>
+    <option value = "Other">All Other Social Media</option>
+</select>
+
+ 
+ 
 </head>
 <body>
 
+
+ 
 <script type="text/javascript">
-jQuery(document).ready(function(){
-	jQuery(".chosen").chosen();
+
+// If no results are selected, write an oops message
+
+$(document).ready(function(){
+
+	$(".show-chosen").chosen
+	 ({no_results_text:"Oops! That's not a show!"})
+   $(".social-chosen").chosen
+   ({no_results_text:"Oops! That's not a platform!"})
+    
+       
 });
+
+//If a result is selected, make a pop up box with alert
+
+	
+$("#network-form").chosen().change(function(){
+
+	var show = $("#show-form option:selected").text();
+	var work = $("#network-form option:selected").text();
+	
+	alert(show + '\t' + work);
+});
+
+
+function getSelText() {
+	var SelText = '';
+	if (document.getSelection) {
+		SelText = document.getSelection();
+	} 
+	return SelText;
+}
+
+
+ 
+
 </script>
 
-<!-- single dropdown -->
-<select class="chosen" style="width:200px;">
-	<option>Choose...</option>
-	<option>jQuery</option>
-	<option selected="selected">MooTools</option>
-	<option>Prototype</option>
-	<option>Dojo Toolkit</option>
-</select>
 
-
+ 
 </body>
 </html>
