@@ -80,7 +80,6 @@
 <script type="text/javascript">
 
 
-//Gets Today's Date
 // If no results are selected, write an oops message
 
 $(document).ready(function(){
@@ -94,12 +93,17 @@ $(document).ready(function(){
 });
 
 //If a result is selected, make a pop up box with alert
+//Gets Today's Date
 
 	
 $("#network-form").chosen().change(function(){
 
+// Assigns variables to what is selected from show drop-down and from social network drop-down
+
 	var show = $("#show-form option:selected").text();
 	var work = $("#network-form option:selected").text();
+	
+// Finds today's date
 	
 	var today = new Date();
 	var dd = today.getDate();
@@ -107,7 +111,8 @@ $("#network-form").chosen().change(function(){
 
 	var yyyy = today.getFullYear();
 	if(dd<10){dd='0'+dd} if(mm<10){mm='0'+mm} today = mm+'/'+dd+'/'+yyyy;
-	
+
+// Creates a pop-up showing the show selected, the social network selected
 	
 	alert(show + '\t' + work + '\t' + today);
 });
@@ -115,22 +120,19 @@ $("#network-form").chosen().change(function(){
 // Gets the text of the url
 
 $(document).ready(function() {
-    //jquery
     $(location).attr('href');
-
-    //pure javascript
     var pathname = window.location.pathname;
-
-    // to show it in an alert window
     alert(window.location);
 });
 
 
+$(document).ready(function() {
 
+//if(document.getElementById('show-form').value == "&utm_source=thirteenseven&utm_campaign=artsculture") {
+		alert (show);
+	//}
 
-
-
-
+});
 
  
 
