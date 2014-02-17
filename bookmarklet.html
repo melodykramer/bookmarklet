@@ -89,13 +89,22 @@ $(document).ready(function(){
    $(".social-chosen").chosen
    ({no_results_text:"Oops! That's not a platform!"})
    
+// obtains text of URL
+   
+   $(location).attr('href');
+    var pathname = window.location.pathname;
+    alert(window.location);
        
 });
 
-//If a result is selected, make a pop up box with alert
-//Gets Today's Date
 
-	
+//Assigns global variables
+
+var show = "";	
+var work = "";
+
+//After social network is selected, make a pop up box with alert
+
 $("#network-form").chosen().change(function(){
 
 // Assigns variables to what is selected from show drop-down and from social network drop-down
@@ -112,18 +121,12 @@ $("#network-form").chosen().change(function(){
 	var yyyy = today.getFullYear();
 	if(dd<10){dd='0'+dd} if(mm<10){mm='0'+mm} today = mm+'/'+dd+'/'+yyyy;
 
-// Creates a pop-up showing the show selected, the social network selected
+// Creates a pop-up showing the show selected, the social network selected and today's date
 	
 	alert(show + '\t' + work + '\t' + today);
 });
 
-// Gets the text of the url
 
-$(document).ready(function() {
-    $(location).attr('href');
-    var pathname = window.location.pathname;
-    alert(window.location);
-});
 
 
 $(document).ready(function() {
