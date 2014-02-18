@@ -82,6 +82,8 @@
 
 // If no results are selected, write an oops message
 
+
+
 $(document).ready(function(){
 
 	$(".show-chosen").chosen
@@ -98,10 +100,7 @@ $(document).ready(function(){
 });
 
 
-//Assigns global variables
 
-var show = "";	
-var work = "";
 
 //After social network is selected, make a pop up box with alert
 
@@ -111,6 +110,8 @@ $("#network-form").chosen().change(function(){
 
 	var show = $("#show-form option:selected").text();
 	var work = $("#network-form option:selected").text();
+	var show2 = document.getElementById("show-form").value;
+	var work2 = document.getElementById("network-form").value;
 	
 // Finds today's date
 	
@@ -123,7 +124,7 @@ $("#network-form").chosen().change(function(){
 
 // Creates a pop-up showing the show selected, the social network selected and today's date
 	
-	alert(show + '\t' + work + '\t' + today);
+	alert(window.location + work2 + show2 + '&utm_content=' + today);
 });
 
 
