@@ -76,6 +76,8 @@
 <body>
 
 
+
+
  
 <script type="text/javascript">
 
@@ -95,7 +97,7 @@ $(document).ready(function(){
    
    $(location).attr('href');
     var pathname = window.location.pathname;
-    alert(window.location);
+    // alert(window.location);
        
 });
 
@@ -108,8 +110,8 @@ $("#network-form").chosen().change(function(){
 
 // Assigns variables to what is selected from show drop-down and from social network drop-down
 
-	var show = $("#show-form option:selected").text();
-	var work = $("#network-form option:selected").text();
+	//var show = $("#show-form option:selected").text();
+	//var work = $("#network-form option:selected").text();
 	var show2 = document.getElementById("show-form").value;
 	var work2 = document.getElementById("network-form").value;
 	
@@ -122,9 +124,9 @@ $("#network-form").chosen().change(function(){
 	var yyyy = today.getFullYear();
 	if(dd<10){dd='0'+dd} if(mm<10){mm='0'+mm} today = mm+'/'+dd+'/'+yyyy;
 
-// Creates a pop-up showing the show selected, the social network selected and today's date
+// Replaces url with url + appended code
 	
-	alert(window.location + work2 + show2 + '&utm_content=' + today);
+	window.location = (window.location + work2 + show2 + '&utm_content=' + today);
 });
 
 
