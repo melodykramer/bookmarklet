@@ -1,150 +1,103 @@
-<html>
-<head>
-<title>Time Saving Link Appender </title>
+<!DOCTYPE html>
+<html lang="en">
+    <head><meta charset="utf-8"></head>
+    <body>
+        <script type="text/html" class="template-link">
+            <li><a href="javascript:<%= javascript_string %>">
+                <%= network.network_name %>
+            </a></li>
+        </script>
  
-<link rel="stylesheet" href="chosen.min.css">
-
-
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.js"></script>
-<script src="chosen.min.js"></script>
-<script src="chosen.jquery.js"></script>
+        <!-- Include jQuery and Underscore.js -->
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.js"></script>
+        <script type="text/javascript" src="http://underscorejs.org/underscore-min.js"></script>
  
-
-
-<!-- single dropdown -->
-
-<select id="show-form" data-placeholder="Choose Your Desk/Show" class="show-chosen" style="width:200px;">
-    <option value = "Show/Desk/Blog">Show/Desk/Blog</option>
-    <option value = "&utm_source=thirteenseven&utm_campaign=artsculture">13.7</option> 
-    <option value = "&utm_source=jazz&utm_campaign=music">A Blog Supreme</option>
-    <option value = "&utm_source=allsongs&utm_campaign=music">All Songs Considered</option>
-    <option value = "&utm_source=alltech&utm_campaign=nprnews">All Tech Considered</option>
-    <option value = "&utm_source=atc&utm_campaign=nprnews">All Things Considered</option>
-    <option value = "&utm_source=altlatino&utm_campaign=music">Alt. Latino</option>
-    <option value = "&utm_source=askmeanother&utm_campaign=artsculture">Ask Me Another</option>
-    <option value = "&utm_source=codeswitch&utm_campaign=nprnews">Code Switch</option>
-    <option value = "&utm_source=classical&utm_campaign=music">Deceptive Cadence</option>
-    <option value = "&utm_source=genlisten&utm_campaign=aboutnpr">Generation Listen</option>
-    <option value = "&utm_source=globalhealth&utm_campaign=nprnews">Global Health</option>
-    <option value = "&utm_source=politics&utm_campaign=nprnews">It's All Politics</option>
-    <option value = "&utm_source=monkeysee&utm_campaign=artsculture">Monkey See</option>
-    <option value = "&utm_source=morningedition&utm_campaign=nprnews">Morning Edition</option>
-    <option value = "&utm_source=nprchives&utm_campaign=aboutnpr">NPR Archives</option>
-    <option value = "&utm_source=books&utm_campaign=artsculture">NPR Books</option>
-    <option value = "&utm_source=business&utm_campaign=nprnews">NPR Business</option>
-<option value = "&utm_source=nprhr&utm_campaign=aboutnpr">NPR Jobs</option>
-<option value = "&utm_source=library&utm_campaign=library">NPR Library</option>
-    <option value = "&utm_source=Movies&utm_campaign=artsculture">NPR Movies</option>
-    <option value = "&utm_source=nprmusic&utm_campaign=music">NPR Music</option>
-    <option value = "&utm_source=npr&utm_campaign=nprnews">NPR News</option>
-    <option value = "&utm_source=nprpresents&utm_campaign=nprnews">NPR Presents</option>
-    <option value = "&utm_source=shop&utm_campaign=aboutnpr">NPR Shop</option>
-    <option value = "&utm_source=nprmedia&utm_campaign=aboutnpr">NPR Viz</option>
-    <option value = "&utm_source=olympics&utm_campaign=nprnews">Olympics</option>
-    <option value = "&utm_source=ombudsman&utm_campaign=aboutnpr">Ombudsman</option>
-    <option value = "&utm_source=ontheroad&utm_campaign=nprnews">On The Road</option>
-    <option value = "&utm_source=parallels&utm_campaign=nprnews">Parallels</option>
-    <option value = "&utm_source=pictureshow&utm_campaign=artsculture">The Picture Show</option>
-    <option value = "&utm_source=planetmoney&utm_campaign=nprnews">Planet Money</option>
-    <option value = "&utm_source=science&utm_campaign=nprnews">Science Desk</option>
-    <option value = "&utm_source=health&utm_campaign=nprnews">Shots</option>
-    <option value = "&utm_source=skunkbear&utm_campaign=nprnews">Skunk Bear</option>
-    <option value = "&utm_source=tedradiohour&utm_campaign=nprnews">TED Radio Hour</option>
-    <option value = "&utm_source=tellmemore&utm_campaign=nprnews">Tell Me More</option>
-    <option value = "&utm_source=BreakingNews&utm_campaign=nprnews">The Two-Way</option>
-    <option value = "&utm_source=thisisnpr&utm_campaign=aboutnpr">This is NPR</option>
-    <option value = "&utm_source=waitwait&utm_campaign=artsculture">Wait Wait...Don't Tell Me</option>
-    <option value = "&utm_source=weekendedition&utm_campaign=nprnews">Weekend Edition</option>
-    
-</select>
-
+        <!-- This is the meat of our script. Notice it goes at the bottom. -->
+        <script type="text/javascript">
  
-<select id="network-form" data-placeholder="Social Media Site" class="social-chosen" style="width:200px;">
-    <option>Social Network</option>
-    <option value = "?utm_medium=facebook">Facebook</option>
-    <option value = "?utm_medium=twitter">Twitter</option>
-    <option value = "?utm_medium=tumblr">Tumblr</option>
-    <option value = "?utm_medium=gplus">Google Plus</option>
-    <option value = "?utm_medium=linkedin">LinkedIn</option>
-    <option value = "?utm_medium=pinterest">Pinterest</option>
-    <option value = "?utm_medium=reddit">Reddit</option>
-    <option value = "?utm_medium=social">All Other Social Media</option>
-</select>
-
-
-</head>
-<body>
-
-
-
-
+        // Let's define a pair of global variables as constants.
+        // This will be your networks and shows.
+        // Note that both of these are just arrays of Javascript objects.
+        NETWORKS = [
+            {
+                network_name: "PUT NAME OF SOCIAL NETWORK HERE",
+                network_param: "PUT THE TRACKING CODE FOR GOOGLE ANALYTICS HERE"
+            }, {
+                network_name: "PUT ANOTHER SOCIAL NETWORK NAME HERE",
+                network_param: "PUT THE TRACKING CODE FOR GOOGLE ANALYTICS HERE"
+            }
+        ];
  
-<script type="text/javascript">
-
-
-// If no results are selected, write an oops message
-
-
-
-$(document).ready(function(){
-
-	$(".show-chosen").chosen
-	 ({no_results_text:"Oops! That's not a show!"})
-   $(".social-chosen").chosen
-   ({no_results_text:"Oops! That's not a platform!"})
-   
-// obtains text of URL
-   
-   $(location).attr('href');
-    var pathname = window.location.pathname;
-    // alert(window.location);
-       
-});
-
-
-
-
-//After social network is selected, make a pop up box with alert
-
-$("#network-form").chosen().change(function(){
-
-// Assigns variables to what is selected from show drop-down and from social network drop-down
-
-	//var show = $("#show-form option:selected").text();
-	//var work = $("#network-form option:selected").text();
-	var show2 = document.getElementById("show-form").value;
-	var work2 = document.getElementById("network-form").value;
-	
-// Finds today's date
-	
-	var today = new Date();
-	var dd = today.getDate();
-	var mm = today.getMonth()+1; //January is 0!
-
-	var yyyy = today.getFullYear();
-	if(dd<10){dd='0'+dd} if(mm<10){mm='0'+mm} today = mm+'/'+dd+'/'+yyyy;
-
-// Replaces url with url + appended code
-	
-	window.location = (window.location + work2 + show2 + '&utm_content=' + today);
-});
-
-
-
-
-$(document).ready(function() {
-
-//if(document.getElementById('show-form').value == "&utm_source=thirteenseven&utm_campaign=artsculture") {
-		alert (show);
-	//}
-
-});
-
+        SHOWS = [
+            {
+                show_slug: "show-slug",
+                show_name: "Show Name",
+                show_param: "TRACKING CODE FOR GOOGLE ANALYTICS HERE"
+            },{
+                show_slug: "another-show-slug",
+                show_name: "Another Show Name",
+                show_param: "ANOTHER TRACKING CODE FOR GOOGLE ANALYTICS HERE"
+            }
+        ];
  
-
-</script>
-
-
+        // Now, let's do our actual scripting.
+        // I've enclosed this in a $(document).ready() function so as not to execute before
+        // the DOM has finished rendering. That's not important for this app so much but it's
+        // definitely a best practice.
+        $(document).ready(function(){
  
-</body>
+            // Okay, so let's do our stuff.
+            // First, we want a nav to be able to page down to my particular show.
+            // So append a div and a ul for the nav to the body.
+            $('body').append('<div id="nav"><h1>Navigate</h1><ul></ul></div>');
+ 
+            // Set up a variable where the nav's ul is.
+            var $nav_el = $('#nav ul');
+ 
+            // Okay, now let's loop over the shows.
+            // For each show, let's append a link to the nav (for navigating) and then also
+            // append some HTML to the body for the actual bookmarklets and such.
+            $.each(SHOWS, function(i, show) {
+ 
+                // Here's the bit for the nav.
+                $nav_el.append('<li><a href="#' + show.show_slug + '">'+ show.show_name + '</a></li>');
+ 
+                // Let's make a div with the id of our show's slug.
+                $('body').append('<div id="' + show.show_slug + '"></div>');
+ 
+                // And then let's cache the element for this thing.
+                var $show_el = $('#' + show.show_slug);
+ 
+                // Now, let's append an H2 to that element. We want this to look stylish.
+                $show_el.append('<h2>' + show.show_name + '</h2>');
+ 
+                // Next, let's loop over all the social networks and add a bookmarklet to
+                // this show for each one.
+                $.each(NETWORKS, function(i, network){
+ 
+                    // Since we're using a template for the actual bookmarklet, let's parse it.
+                    var parsed_template = _.template($('script.template-link').html());
+ 
+                    // Make our bookmarklet as a string. This is the actual Javascript that the
+                    // browser will execute as a bookmarklet.
+                    var javascript_string = "var show='" + show.show_param + "';work='" + network.network_param + "';var today=new Date();var dd=today.getDate();var mm=today.getMonth()+1;var yyyy=today.getFullYear();if(dd<10){dd='0'+dd}if(mm<10){mm='0'+mm}today=mm+'/'+dd+'/'+yyyy;window.location=(window.location+work+show+'&utm_content='+today);";
+ 
+                    // Next, let's compile our template with some variables we need to make the
+                    // template work. We need to know the network, the show and that long
+                    // Javascript string that is the bookmarklet.
+                    var compiled_template = parsed_template({
+                        'javascript_string': javascript_string,
+                        'network': network,
+                        'show': show
+                    });
+ 
+                    // Finally, we need to append that compiled template to the DOM.
+                    // Let's stick it inside of that show element we defined earlier.
+                    $show_el.append(compiled_template);
+ 
+                });
+            });
+        });
+        </script>
+    </body>
 </html>
